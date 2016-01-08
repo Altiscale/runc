@@ -1,11 +1,10 @@
 RUNC_TEST_IMAGE=runc_test
 PROJECT=github.com/opencontainers/runc
 TEST_DOCKERFILE=script/test_Dockerfile
-BUILDTAGS=seccomp
 export GOPATH:=$(CURDIR)/Godeps/_workspace:$(GOPATH)
 
 all:
-	go build -tags "$(BUILDTAGS)" -o runc .
+	go build -o runc .
 
 static:
 	CGO_ENABLED=1 go build -tags "$(BUILDTAGS) cgo static_build" -ldflags "-w -extldflags -static" -o runc .
